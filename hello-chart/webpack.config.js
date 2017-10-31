@@ -1,4 +1,4 @@
-/* eslint-env node*/
+/* eslint-env node */
 
 const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -12,12 +12,11 @@ module.exports = {
     filename: 'app.js',
     publicPath: 'http://localhost:8080/',
   },
-  debug: true,
   devtool: 'source-map',
   module: {
     loaders: [{
       test: /\.js$/,
-      loader: 'babel',
+      loader: 'babel-loader',
       exclude: [path.resolve(__dirname, 'node_modules')],
       query: {
         presets: ['es2015'],

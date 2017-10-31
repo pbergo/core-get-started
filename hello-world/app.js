@@ -4,15 +4,14 @@ const enigma = require('enigma.js');
 
 console.log('Connecting to QIX Engine');
 
-enigma.getService('qix', enigmaConfig).then((qix) => {
+enigma.create(enigmaConfig).open().then(async (global) => {
   console.log('Connection established');
-  return qix.global.engineVersion();
-})
-.then((version) => {
-  console.log(`Hello, I am QIX Engine! I am running version: ${version.qComponentVersion}`);
-  process.exit(0);
-})
-.catch((err) => {
-  console.log(`Error when connecting to QIX Engine: ${err.message}`);
-  process.exit(1);
+  try {
+    const engineVersion = await global.engineVersion();
+    console.log(`Hello, I am QIX Engine! I am running version: ${engineVersion.qComponentVersion}`);
+    process.exit(0);
+  } catch (error) {
+    console.log(`Error when connecting to QIX Engine: ${error.message}`);
+    process.exit(1);
+  }
 });

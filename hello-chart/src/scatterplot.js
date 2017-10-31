@@ -1,10 +1,9 @@
-/* eslint-env browser*/
+/* eslint-env browser */
 /* eslint import/extensions:0 */
 
 import * as d3 from 'd3';
 
 export default class Scatterplot {
-
   constructor() {
     this.axisPainted = false;
   }
@@ -25,8 +24,7 @@ export default class Scatterplot {
     }));
 
     const measureLabels = layout.qHyperCube.qMeasureInfo.map(item =>
-      item.qFallbackTitle,
-    );
+      item.qFallbackTitle);
 
     const width = element.offsetWidth;
     const height = element.offsetHeight;
@@ -91,7 +89,7 @@ export default class Scatterplot {
       .attr('cx', this.xMap)
       .attr('cy', this.yMap)
       .on('mouseover', (d) => {
-        const event = d3.event;
+        const { event } = d3;
         const text = d.movie;
         const point = {
           y: event.pageY - 28,
